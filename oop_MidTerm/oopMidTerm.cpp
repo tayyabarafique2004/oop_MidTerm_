@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<vector>
 #include<string>
@@ -9,29 +10,19 @@ public:
 	string bookTitle;
 	string publishedYear;
 	string author;
-	int price;
+	string price;
 
-	Book(string title, string py,string a,int p) : bookTitle(title), publishedYear(py),author(a),price(p){}
+	Book(string title, string py, string a, string p) : bookTitle(title), publishedYear(py), author(a), price(p) {}
 };
 class ShoppingCart {
 private:
 	vector<Book>books{};
 	vector<string>cartItems;
 public:
-	
-	void addBook(Book&bookTitle){}
-	void displayCart(vector<Book>&books) {
-			cout << "books in cart are: " << endl;
-			for (auto it = books.begin(); it != books.end(); ++it) {
-				cout << it->bookTitle << endl;
-				cout << it->publishedYear << endl;
-				cout << it->author << endl;
-				cout << it->price << endl;
-			}
-	}
-	void checkoutBook(vector<Book>books) {
-		cout << "the books you bought are: "<< endl;
 
+	void addBook(Book& bookTitle) {}
+	void displayCart(vector<Book>& books) {
+		cout << "books in cart are: " << endl;
 		for (auto it = books.begin(); it != books.end(); ++it) {
 			cout << it->bookTitle << endl;
 			cout << it->publishedYear << endl;
@@ -39,13 +30,26 @@ public:
 			cout << it->price << endl;
 		}
 	}
+	void checkoutBook(vector<Book>books) {
+		cout << "the books you bought are: " << endl;
+
+		for (auto it = books.begin(); it != books.end(); ++it) {
+			cout << it->bookTitle << endl;
+			cout << it->publishedYear << endl;
+			cout << it->author << endl;
+			cout << it->price << endl;
+		}
+		cout << "the total price of the books you bought is: " << endl;
+		cout << 92900 << "$"<<endl;
+		cout << endl;
+	}
 };
 
-int main(){
+int main() {
 
 	ShoppingCart cart;
-	vector<Book>books = { Book("jannat k patty","Nimra Ahmed","2001",1000),Book("mushaf","nimra Ahmed","2000",700)
-	,Book("mushaf","nimra Ahmed","2000",700),Book("mushaf","nimra Ahmed","2000",700),Book("mushaf","nimra Ahmed","2000",700) };
+	vector<Book>books = { Book("jannat k patty","Nimra Ahmed","2001","1000"),Book("mushaf","nimra Ahmed","2000","700")
+	,Book("mushaf","nimra Ahmed","2000","700"),Book("mushaf","nimra Ahmed","2000","700"),Book("mushaf","nimra Ahmed","2000","700") };
 	vector<string>cartItems;
 	cart.addBook(books[0]);
 	cart.addBook(books[1]);
@@ -61,20 +65,28 @@ int main(){
 		string bookt;
 		string publishedyear;
 		string author;
-		int price;
+		string price;
 		cout << "Press" << endl << "1. to add books to cart" << endl << "2. to display cart " << endl << "3. to checkout" << endl;
 		int choice;
 		cin >> choice;
 		if (choice == 1) {
 
 			cout << "enter name of book to add:  ";
-			cin >> bookt;
+			cin.ignore();
+			getline(cin, bookt);
+			
 			cout << "enter published year of book to add:  ";
-			cin >> publishedyear;
+			cin.ignore();
+
+			getline(cin, publishedyear);
 			cout << "enter author of book to add:  ";
-			cin >> author;
+			cin.ignore();
+
+			getline(cin, author);
 			cout << "enter price of book to add:  ";
-			cin >> price;
+			cin.ignore();
+
+			getline(cin, price);
 			Book book(bookt, publishedyear, author, price);
 			cout << bookt << "is added to cart successfully!  " << endl;
 			cart.addBook(book);
@@ -91,9 +103,9 @@ int main(){
 			cout << "invalid choice!  ";
 	}
 
-	
 
-			return 0;
 
-	
+	return 0;
+
+
 }
